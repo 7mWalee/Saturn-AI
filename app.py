@@ -35,6 +35,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == bot.user:
         return
+        
     if bot.user.mentioned_in(message):
         clean_prompt = message.content.replace(f'<@!{bot.user.id}>', '').replace(f'<@{bot.user.id}>', '')
         async with message.channel.typing():
@@ -44,6 +45,9 @@ async def on_message(message):
             except Exception as e:
                 await message.reply("My cosmic signals are fading!")
                 print(e)
+
+    # CRITICAL FIX: Allows the bot to still process command prefixes like !help
+    await bot.process_commands(message)
 
 # 3. RUN BOTH AT THE SAME TIME
 if __name__ == "__main__":
