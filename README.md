@@ -1,2 +1,2 @@
 # Saturn-AI
-AI for Saturn discord server.
+AI for Saturn server.
